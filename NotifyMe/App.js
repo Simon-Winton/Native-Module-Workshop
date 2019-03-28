@@ -23,7 +23,7 @@ export default class App extends Component<Props> {
         <Text style={styles.welcome}>Notify Me!</Text>
         <Text style={styles.instructions}>{instructions}</Text>
         <Button
-            onPress={this.restoreItems}
+            onPress={this.createEvent}
             title="Press Me"
         />
       </View>
