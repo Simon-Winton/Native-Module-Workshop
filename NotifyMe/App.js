@@ -8,6 +8,9 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, Button, View} from 'react-native';
+import {NativeModules} from 'react-native';
+
+var NotificationCreator = NativeModules.NotificationCreator;
 
 const instructions = Platform.select({
   ios: 'Press the button below to create a local notification',
@@ -17,13 +20,18 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+
+  createEvent(){
+    NotificationCreator.createEvent('New Event');
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Notify Me!</Text>
         <Text style={styles.instructions}>{instructions}</Text>
         <Button
-            onPress={this.restoreItems}
+            onPress={this.createEvent}
             title="Press Me"
         />
       </View>

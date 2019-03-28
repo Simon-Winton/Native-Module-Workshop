@@ -1,5 +1,6 @@
 
 #import "RNNotificationCreator.h"
+#import <React/RCTLog.h>
 
 @implementation RNNotificationCreator
 
@@ -7,7 +8,11 @@
 {
     return dispatch_get_main_queue();
 }
-RCT_EXPORT_MODULE()
+RCT_EXPORT_MODULE(NotificationCreator)
+
+RCT_EXPORT_METHOD(createEvent:(NSString *)eventName) {
+    RCTLogInfo(@"Creating event %@", eventName);
+} 
 
 @end
   
