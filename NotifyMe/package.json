@@ -10,7 +10,7 @@
   "dependencies": {
     "react": "16.8.3",
     "react-native": "0.59.2",
-    "notification-creater": "file:../notification-creator"
+    "react-native-notification-creator": "file:../notification-creator"
   },
   "devDependencies": {
     "@babel/core": "7.4.0",
