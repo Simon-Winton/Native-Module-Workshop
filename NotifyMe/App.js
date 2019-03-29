@@ -10,7 +10,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, Button, View} from 'react-native';
 import {NativeModules} from 'react-native';
 
-var NotificationCreator = NativeModules.NotificationCreator;
+const NotificationCreator = NativeModules.NotificationCreator;
 
 const instructions = Platform.select({
   ios: 'Press the button below to create a local notification',
@@ -22,7 +22,9 @@ type Props = {};
 export default class App extends Component<Props> {
 
   createEvent(){
-    NotificationCreator.createEvent('New Event');
+    NotificationCreator.whoAmI(deviceName => {
+      console.warn("You are " + deviceName)
+    });
   }
 
   render() {
