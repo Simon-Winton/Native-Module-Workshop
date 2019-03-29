@@ -4,5 +4,6 @@
 
 RCT_EXTERN_METHOD(createEvent:(NSString *)eventName)
 RCT_EXTERN_METHOD(whoAmI: (RCTResponseSenderBlock)callback)
+RCT_EXTERN_METHOD(decreaseSheep: (RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
 @end
   

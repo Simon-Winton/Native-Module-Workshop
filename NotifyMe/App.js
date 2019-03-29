@@ -27,6 +27,12 @@ export default class App extends Component<Props> {
     });
   }
 
+  killSheep(){
+    NotificationCreator.decreaseSheep()
+    .then(message => console.warn(message))
+    .catch(error => console.warn(error.message, error.code))
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -35,6 +41,10 @@ export default class App extends Component<Props> {
         <Button
             onPress={this.createEvent}
             title="Press Me"
+        />
+        <Button
+            onPress={this.killSheep}
+            title="Kill Sheep"
         />
       </View>
     );
