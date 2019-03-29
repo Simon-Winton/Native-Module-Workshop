@@ -2,12 +2,12 @@ import Foundation
 import UIKit
 
 @objc(RNNotificationCreator)
-class RNNotificationCreator: NSObject {
+class RNNotificationCreator: RCTEventEmitter {
 
     var sheepCount: Int = 3
     
     @objc
-    static func requiresMainQueueSetup() -> Bool {
+    override static func requiresMainQueueSetup() -> Bool {
         return true
     }
     
@@ -29,5 +29,15 @@ class RNNotificationCreator: NSObject {
             sheepCount -= 1
             resolve("Sheep was shot")
         }
+    }
+    
+    @objc
+    func addSheep() {
+        sheepCount += 1
+        sendEvent(withName: "sheepAdded", body: ["count": sheepCount])
+    }
+    
+    override func supportedEvents() -> [String]! {
+        return ["sheepAdded"]
     }
 }

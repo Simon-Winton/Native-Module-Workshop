@@ -8,9 +8,14 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, Button, View} from 'react-native';
-import {NativeModules} from 'react-native';
+import {NativeModules, NativeEventEmitter} from 'react-native';
 
 const NotificationCreator = NativeModules.NotificationCreator;
+const SheepCounter = new NativeEventEmitter(NotificationCreator)
+
+const sheepListener = SheepCounter.addListener('sheepAdded', (res) => {
+  console.warn('NumberOfSheep ', res);
+});
 
 const instructions = Platform.select({
   ios: 'Press the button below to create a local notification',
@@ -33,13 +38,17 @@ export default class App extends Component<Props> {
     .catch(error => console.warn(error.message, error.code))
   }
 
+  letThemLive(){
+    NotificationCreator.addSheep()
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Notify Me!</Text>
         <Text style={styles.instructions}>{instructions}</Text>
         <Button
-            onPress={this.createEvent}
+            onPress={this.letThemLive}
             title="Press Me"
         />
         <Button
